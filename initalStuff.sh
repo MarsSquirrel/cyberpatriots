@@ -31,9 +31,9 @@ echo "Scanning for Media Files"
 users="/home"
 
 touch "results.txt"
-$file="results.txt"
+file="results.txt"
 
-find /home -type f -iname \*.txt -o -iname \*.mpg -o -iname \*.mp2 -o -iname \*.mpeg -o -iname \*.mpe -o -iname \*.mpv -o -iname \*.ogg -o -iname \*.mp4 -o -iname \*.m4p -o -iname \*.m4v -o -iname \*.avi -o -iname \*.wmv -o -iname \*.mov -o -iname \*.qt -o -iname \*.flv -o -iname \*.swf -o -iname \*.avchd -o -iname \*.mp3 -o -iname \*.aac -o -iname \*.flac -o -iname \*.webm -o -iname \*.jpeg -o -iname \*.tiff -o -iname \*.bmp -o -iname \*.pdf -o -iname \*.png -o -iname \*.gif -o -iname \*.svg -o -iname \*.webp -o >> $file
+find /home -type f -iname \*.txt -o -iname \*.mpg -o -iname \*.mp2 -o -iname \*.mpeg -o -iname \*.mpe -o -iname \*.mpv -o -iname \*.ogg -o -iname \*.mp4 -o -iname \*.m4p -o -iname \*.m4v -o -iname \*.avi -o -iname \*.wmv -o -iname \*.mov -o -iname \*.qt -o -iname \*.flv -o -iname \*.swf -o -iname \*.avchd -o -iname \*.mp3 -o -iname \*.aac -o -iname \*.flac -o -iname \*.webm -o -iname \*.jpeg -o -iname \*.tiff -o -iname \*.bmp -o -iname \*.pdf -o -iname \*.png -o -iname \*.gif -o -iname \*.svg -o -iname \*.webp >> $file
 
 echo "Logged to file $file, in the same directory as the script."
 T="$(($(date +%s)-T))"
