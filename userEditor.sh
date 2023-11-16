@@ -14,7 +14,7 @@ sudo awk -F '($3>1000)&&($1!="nobody"){print $1}' /etc/passwd > user.txt
 
 for line in $(cat "user.txt"); do
     read -p "is $line suppose to be on this system" response
-    if [[ ]]; then
-        
+    if [ "$response" == "y"]; then
+        echo "DELETE"
     fi
 done
