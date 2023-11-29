@@ -10,11 +10,18 @@
 # read: read -p "enter age" age
 
 
+echo "DELETING/MANAGING USERS ON SYSTEM"
+echo "---------------------------------"
+echo "Make sure you have answered the forensic questions before doing anything here as you could probably mess up everything and restart"
+echo "repo: /marssquirrel/cyberpatriots"
+echo "---------------------------------"
+
+
 sudo awk -F '($3>1000)&&($1!="nobody"){print $1}' /etc/passwd > user.txt
 
 for line in $(cat "user.txt"); do
     read -p "is $line suppose to be on this system" response
     if [ "$response" == "y"]; then
-        echo "DELETE"
+        userdel -r $line
     fi
 done
