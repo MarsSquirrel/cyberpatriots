@@ -1,5 +1,5 @@
 #!/bin/bash
-
+T="$(date +%s)"
 #1 Get all the users
 #2 Loop through all users
 #3 Prompt the adminstrator if they should have this user on the system
@@ -31,3 +31,6 @@ echo "Edit Admin Privilages"
 echo "---------------------------------"
 
 echo "code this please, how to get all users"
+
+T="$(($(date +%s)-T))"
+echo "It took ${T} seconds to run this."
