@@ -17,11 +17,11 @@ echo "repo: /marssquirrel/cyberpatriots"
 echo "---------------------------------"
 
 
-sudo awk -F '($3>1000)&&($1!="nobody"){print $1}' /etc/passwd > user.txt
+sudo awk -F ':' '($3>1000)&&($1!="nobody"){print $1}' /etc/passwd > user.txt
 
 for line in $(cat "user.txt"); do
     read -p "is $line NOT suppose to be on this system" response
-    if [ "$response" == "y"]; then
+    if [ "$response" == "y" ]; then
         userdel -r $line
     fi
 done
