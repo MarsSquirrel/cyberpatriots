@@ -30,7 +30,27 @@ echo "---------------------------------"
 echo "Edit Admin Privilages"
 echo "---------------------------------"
 
-echo "code this please, how to get all users"
+grep -ir sudo /etc/group > admin.txt
+
+for line $(cat "admin.txt"); do
+    read -p "is $line NOT suppose to be an admin" response
+    if [ "$response" == "y" ]; then
+        deluser -r $response sudo
+    fi
+done
+
+
+echo "---------------------------------"
+echo "Add Admins"
+echo "---------------------------------"
+
+echo "code this"
+
+echo "---------------------------------"
+echo "Add Users"
+echo "---------------------------------"
+
+echo "code this"
 
 T="$(($(date +%s)-T))"
 echo "It took ${T} seconds to run this."
