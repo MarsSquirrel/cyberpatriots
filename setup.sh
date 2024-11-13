@@ -15,12 +15,12 @@ function confirm() {
 # Executing Here
 echo "|---- Program Started -----|"
 echo "Make sure you ran this command using sudo"
-echo "WARNING: Make sure the admin group is set correctly. (Default is $admin_group)
+echo "WARNING: Make sure the admin group is set correctly. (Default is $admin_group)"
 
 # Users
 echo "Section #1 - Users"
 
-awk -F ':' '($3>1000)&&($1!="nobody"){print $1}' /etc/passwd > user.txt
+awk -F ':' '($3>=1000)&&($1!="nobody"){print $1}' /etc/passwd > user.txt
 
 for line in $(cat "user.txt"); do
 	echo -e "Choose Options for\033[1m $line \033[0m"
@@ -94,3 +94,28 @@ echo "|----------------------|"
 echo "Configuring Auto Updates"
 apt-get update
 apt-get upgrade
+
+echo "|----------------------|"
+
+echo "Securing SSH"
+read -p "Is SSH an essential service? (y = yes, n = no) (BLANK RESPONSES WILL BE NO)" allowSSH
+
+if [ "$allowSSH" == "y" ]; then
+	sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
+	# include additional permissions required to secure ssh.
+fi
+
+echo "|----------------------|"
+
+echo "Process completed. Next steps:"
+echo "Secure Pam"
+echo "Delete guest users and uuid=0"
+echo "Remove unneeded programs"
+echo "Check logged files in /results.txt"
+echo "sudo apt-get install libpam-cracklib"
+echo "IF LIGHTDM IS INSTALLED THEN Remove line with autologin-user AND Add the following line to disable guest account: allow_guest=false"
+
+echo "Checklists"
+echo "https://www.cochise.edu/wp-content/uploads/2021/02/Security-Checklist-Linux.pdf"
+echo "https://github.com/Abdelgawadg/cyberpatriot-checklist-ubuntu"
+echo "https://gist.github.com/bobpaw/a0b6828a5cfa31cfe9007b711a36082f"
